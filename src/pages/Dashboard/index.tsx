@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import { Component, useEffect, useState } from 'react';
 
 import Header from '../../components/Header';
 import api from '../../services/api';
@@ -6,7 +6,54 @@ import Food from '../../components/Food';
 import ModalAddFood from '../../components/ModalAddFood';
 import ModalEditFood from '../../components/ModalEditFood';
 import { FoodsContainer } from './styles';
+import { OrderFood } from '../../hooks/order';
+import { IFood } from '../../types';
 
+const Dashboard = () => {
+  const { order, addFood, updateFood, deleteFood } = OrderFood();
+  const [foods, setFoods] = useState<IFood[]>([]);
+
+  useEffect(() => {
+    async function loadFoods() {
+      const foods: IFood[] = (await api.get('/foods')).data;
+      setFoods(foods);
+    }
+    loadFoods()
+
+  }, []);
+  function handleAddFood(id: number) {
+    addFood(id);
+  }
+  function handleDeleteFood(id: number) {
+    deleteFood(id);
+  }
+  function handleUpdateFood(id: number) {
+    //updateFood(id, new IFood());
+  }
+  return (
+    <> 
+      <Header />
+      <ModalAddFood
+      />
+      <ModalEditFood
+        handleUpdateFood={handleUpdateFood(1)}
+      />
+     
+      <FoodsContainer data-testid="foods-list">
+        {foods &&
+          foods.map(food => (
+
+            <Food
+              key={food.id}
+              food={food}
+              handleDelete={handleDeleteFood(1)}
+            />
+          ))}
+      </FoodsContainer>
+    </>
+  );
+}
+/*
 class Dashboard extends Component {
   constructor(props) {
     super(props);
@@ -18,11 +65,6 @@ class Dashboard extends Component {
     }
   }
 
-  async componentDidMount() {
-    const response = await api.get('/foods');
-
-    this.setState({ foods: response.data });
-  }
 
   handleAddFood = async food => {
     const { foods } = this.state;
@@ -117,5 +159,5 @@ class Dashboard extends Component {
     );
   }
 };
-
+*/
 export default Dashboard;
