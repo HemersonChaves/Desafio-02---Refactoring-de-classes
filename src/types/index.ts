@@ -7,4 +7,4 @@ interface IFood {
     image:string
 }
 
-export { IFood }
+export type { IFood }
