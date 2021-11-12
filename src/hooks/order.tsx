@@ -7,8 +7,8 @@ interface IOrderProviderProps {
 interface OrderContextData {
     order: IFood[];
     addFood: (productId: number) => Promise<void>;
-    updateFood: (productId: number) => void;
-    deleteFood: (productId: number, food: IFood) => void;
+    deleteFood: (productId: number) => void;
+    updateFood: (productId: number, food: IFood) => void;
 }
 const OrderContext = createContext<OrderContextData>({} as OrderContextData);
 
@@ -22,14 +22,14 @@ export function OrderProvider({ children }: IOrderProviderProps) {
             //todo
         }
     }
-    const updateFood = async (foodtId: number) => {
+    const updateFood = async (foodId: number, food: IFood) => {
         try {
             //todo
         } catch (error) {
             //todo
         }
     }
-    const deleteFood = async (productId: number, food: IFood) => {
+    const deleteFood = async (foodId: number) => {
         try {
             //todo
         } catch (error) {
