@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useState } from 'react';
+import { createContext, ReactNode, useContext, useState } from 'react';
 import { IFood } from '../types';
 
 interface IOrderProviderProps {
@@ -44,3 +44,9 @@ export function OrderProvider({ children }: IOrderProviderProps) {
         </OrderContext.Provider>
     )
 }
+export function OrderFood(): OrderContextData {
+    const context = useContext(OrderContext);
+  
+    return context;
+  }
+  
