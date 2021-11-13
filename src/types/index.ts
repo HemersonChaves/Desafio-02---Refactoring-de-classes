@@ -1,5 +1,5 @@
 interface IFood {
-    id: string
+    id?: string
     name: string
     description: string
     price: string
