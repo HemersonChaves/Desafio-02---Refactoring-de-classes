@@ -12,7 +12,7 @@ import { IFood } from '../../types';
 const Dashboard = () => {
   const { order, addFood, updateFood, deleteFood } = OrderFood();
   const [foods, setFoods] = useState<IFood[]>([]);
-  const [modalOpen, setModalOpen] = useState(false);
+  const [modalOpen, setModalOpen] = useState<boolean>(false);
 
   useEffect(() => {
     async function loadFoods() {
@@ -23,7 +23,8 @@ const Dashboard = () => {
 
   }, []);
   function handleAddFood(id: number) {
-    //addFood(foods);
+ 
+    //addFood(1);
   }
   function handleDeleteFood(id: number) {
     //deleteFood(id);
@@ -40,8 +41,8 @@ const Dashboard = () => {
     <>
       <Header openModal={openModal} />
       <ModalAddFood
-      isOpen={modalOpen}
       setIsOpen={openModal}
+      isOpen={modalOpen}
       />
       <ModalEditFood
         handleUpdateFood={handleUpdateFood(1)}
