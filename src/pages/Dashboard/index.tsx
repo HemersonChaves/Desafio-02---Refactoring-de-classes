@@ -22,8 +22,8 @@ const Dashboard = () => {
     loadFoods()
 
   }, []);
-  function handleAddFood(id: number) {
- 
+  async function handleAddFood(food:IFood){
+    console.log(food);
     //addFood(1);
   }
   function handleDeleteFood(id: number) {
@@ -43,6 +43,7 @@ const Dashboard = () => {
       <ModalAddFood
       setIsOpen={openModal}
       isOpen={modalOpen}
+      handleAddFood={handleAddFood}
       />
       <ModalEditFood
         handleUpdateFood={handleUpdateFood(1)}
