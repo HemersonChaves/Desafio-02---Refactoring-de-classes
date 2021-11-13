@@ -1,6 +1,6 @@
 import { Component, useEffect, useState } from 'react';
 
-import {Header} from '../../components/Header';
+import { Header } from '../../components/Header';
 import api from '../../services/api';
 import Food from '../../components/Food';
 import ModalAddFood from '../../components/ModalAddFood';
@@ -23,27 +23,30 @@ const Dashboard = () => {
 
   }, []);
   function handleAddFood(id: number) {
-    addFood(id);
+    //addFood(foods);
   }
   function handleDeleteFood(id: number) {
-    deleteFood(id);
+    //deleteFood(id);
   }
   function handleUpdateFood(id: number) {
     //updateFood(id, new IFood());
   }
 
- function openModal():void{
+  function openModal(): void {
     setModalOpen(!modalOpen);
   }
+
   return (
-    <> 
+    <>
       <Header openModal={openModal} />
       <ModalAddFood
+      isOpen={modalOpen}
+      setIsOpen={openModal}
       />
       <ModalEditFood
         handleUpdateFood={handleUpdateFood(1)}
       />
-     
+
       <FoodsContainer data-testid="foods-list">
         {foods &&
           foods.map(food => (
